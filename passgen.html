@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Welcome to the Maker of Passwords</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            flex-direction: column;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.2em;
+        }
+        button {
+            background: #ff7eb3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ff4d94;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Maker of Passwords</h1>
+    <p>Generate secure and random passwords with customizable options to enhance security.</p>
+    <div class="container">
+        <h2>Password Generator</h2>
+        <input type="text" id="password" readonly>
+        <br>
+        <label for="length">Password Length:</label>
+        <input type="number" id="length" min="4" max="30" value="12">
+        <label>
+            <input type="checkbox" id="includeSymbols" checked> Include Symbols
+        </label>
+        <label>
+            <input type="checkbox" id="includeNumbers" checked> Include Numbers
+        </label>
+        <label>
+            <input type="checkbox" id="includeUppercase" checked> Include Uppercase
+        </label>
+        <button onclick="generatePassword()">Generate Password</button>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const length = document.getElementById("length").value;
+            const lowercase = "abcdefghijklmnopqrstuvwxyz";
+            const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const numbers = "0123456789";
+            const symbols = "!@#$%^&*()_+";
+            
+            let chars = lowercase;
+            if (document.getElementById("includeUppercase").checked) chars += uppercase;
+            if (document.getElementById("includeNumbers").checked) chars += numbers;
+            if (document.getElementById("includeSymbols").checked) chars += symbols;
+            
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById("password").value = password;
+        }
+    </script>
+</body>
+</html>
+
