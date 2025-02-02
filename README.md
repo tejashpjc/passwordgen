@@ -1,4 +1,4 @@
-Simple Password Generator.
+This is a Simple Password Generator.
 
 Optional buttons for Customizable Passwords
 
